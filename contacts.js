@@ -9,14 +9,19 @@ const path =require("path");
  
 
 async function listContacts() {
-     // ...твій код. Повертає масив контактів.
      const data = await fs.readFile("contactsPath", {encoding: "utf-8"});
 
      return JSON.parse(data);
   }
   
+
+
   async function getContactById(contactId) {
-    // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
+    const id=contactId.toString();
+    const contacts = await listContacts();
+    const result= contacts.find((contact)=>contactId===id);
+
+    return result || null;
   }
   
   async function removeContact(contactId) {
