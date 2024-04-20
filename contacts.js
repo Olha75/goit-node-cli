@@ -25,11 +25,11 @@ async function listContacts() {
   }
   
   async function removeContact(contactId) {
-    const contacts =awaiit listContacts();
+    const contacts =await listContacts();
     const index = contacts.findIndex((item)=>item.id===contactId);
     if (index===-1)return null;
     const deleteContact=contacts.splice(index, 1);
-    qwait fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 
     return deleteContact;
  
