@@ -1,4 +1,9 @@
 import { program } from "commander";
+
+const contacts = require("./contacts.js")
+
+
+
 program
   .option("-a, --action <type>", "choose action")
   .option("-i, --id <type>", "user id")
@@ -14,7 +19,9 @@ const options = program.opts();
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      // ...
+        const allContacts = await contacts.listContacts();
+        console.table(allContacts);
+  
       break;
 
     case "get":
