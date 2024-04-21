@@ -36,5 +36,21 @@ async function listContacts() {
   }
   
   async function addContact(name, email, phone) {
-    // ...твій код. Повертає об'єкт доданого контакту (з id).
+   const contacts = await listContacts();
+   const newContact={
+    id:nanoid(),
+    name, email, phone}
+    contacts.push(newContact);
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+    return newContact;
+  
   }
+
+ 
+module.exports = {
+    listContacts,
+    getContactById,
+    addContact,
+    removeContact,
+  };
+   
